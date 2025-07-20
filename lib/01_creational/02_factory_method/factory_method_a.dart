@@ -8,21 +8,21 @@ abstract class Hamburger {
 class ChickenHamburger implements Hamburger {
   @override
   void prepare() {
-    printWithColor('Preparando hambúrguer de frango', 'yellow');
+    printWithColor('Preparando hambúrguer de ', 'frango', 'yellow');
   }
 }
 
 class BeefHamburger implements Hamburger {
   @override
   void prepare() {
-    printWithColor('Preparando hambúrguer de carne bovina', 'brown');
+    printWithColor('Preparando hambúrguer de carne ', 'bovina', 'brown');
   }
 }
 
 class VeggieHamburger implements Hamburger {
   @override
   void prepare() {
-    printWithColor('Preparando hambúrguer vegetariano', 'green');
+    printWithColor('Preparando hambúrguer ', 'vegetariano', 'green');
   }
 }
 
@@ -81,6 +81,6 @@ void main() {
     final factory = getHamburgerFactoryByChoice(burgerChoice);
     factory.orderHamburger();
   } catch (e) {
-    printWithColor(e.toString(), 'red');
+    printWithColor('', e.toString(), 'red');
   }
 }

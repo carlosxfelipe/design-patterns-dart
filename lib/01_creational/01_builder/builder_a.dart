@@ -7,7 +7,7 @@ class Computer {
   String? gpu;
 
   void displayConfiguration() {
-    printWithColor('Configuração do Meu PC:', 'blue');
+    printWithColor('', 'Configuração do Meu PC:', 'blue');
     print('CPU: $cpu');
     print('RAM: $ram');
     print('Armazenamento: $storage');

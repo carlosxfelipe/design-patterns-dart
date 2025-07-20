@@ -8,19 +8,19 @@ abstract class Report {
 class SalesReport implements Report {
   @override
   void generate() {
-    printWithColor('Gerando relatório de vendas...', 'green');
+    printWithColor('', 'Gerando relatório de vendas...', 'green');
   }
 }
 
 class InventoryReport implements Report {
   @override
   void generate() {
-    printWithColor('Gerando relatório de inventário...', 'orange');
+    printWithColor('', 'Gerando relatório de inventário...', 'orange');
   }
 }
 
 abstract class ReportFactory {
-  Report _createReport(); // simula "protected"
+  Report _createReport();
 
   void generateReport() {
     final report = _createReport();
@@ -63,6 +63,6 @@ void main() {
     final factory = getReportFactory(input);
     factory.generateReport();
   } catch (e) {
-    printWithColor(e.toString(), 'red');
+    printWithColor('', e.toString(), 'red');
   }
 }

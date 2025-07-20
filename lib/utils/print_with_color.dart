@@ -1,6 +1,6 @@
 import 'ansi_colors.dart';
 
-void printWithColor(String message, String color) {
+void printWithColor(String leadingText, String coloredText, String color) {
   final colorMap = {
     'brown': AnsiColors.brown,
     'red': AnsiColors.red,
@@ -18,5 +18,5 @@ void printWithColor(String message, String color) {
   };
 
   final ansi = colorMap[color.toLowerCase()] ?? AnsiColors.reset;
-  print('$ansi$message${AnsiColors.reset}');
+  print('$leadingText$ansi$coloredText${AnsiColors.reset}');
 }

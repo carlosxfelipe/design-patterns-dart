@@ -52,6 +52,6 @@ void main() {
       .limit(10)
       .execute();
 
-  printWithColor('Consulta:', 'red');
+  printWithColor('', 'Consulta:', 'red');
   print(usersQuery);
 }
