@@ -1,5 +1,5 @@
 import 'dart:io';
-import '../../utils/print_with_color.dart';
+import '../../utils/ansi_colors.dart';
 
 abstract class Report {
   void generate();
@@ -8,14 +8,14 @@ abstract class Report {
 class SalesReport implements Report {
   @override
   void generate() {
-    printWithColor('', 'Gerando relatório de vendas...', 'green');
+    print(green('Gerando relatório de vendas...'));
   }
 }
 
 class InventoryReport implements Report {
   @override
   void generate() {
-    printWithColor('', 'Gerando relatório de inventário...', 'orange');
+    print(rgb8('Gerando relatório de inventário...', 208)); // orange
   }
 }
 
@@ -63,6 +63,6 @@ void main() {
     final factory = getReportFactory(input);
     factory.generateReport();
   } catch (e) {
-    printWithColor('', e.toString(), 'red');
+    print(red(e.toString()));
   }
 }

@@ -1,4 +1,4 @@
-import '../../utils/print_with_color.dart';
+import '../../utils/ansi_colors.dart';
 
 class QueryBuilder {
   final String _table;
@@ -52,6 +52,6 @@ void main() {
       .limit(10)
       .execute();
 
-  printWithColor('', 'Consulta:', 'red');
+  print(red('Consulta:'));
   print(usersQuery);
 }

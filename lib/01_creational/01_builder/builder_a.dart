@@ -1,4 +1,4 @@
-import '../../utils/print_with_color.dart';
+import '../../utils/ansi_colors.dart';
 
 class Computer {
   String cpu = 'cpu - não definido';
@@ -7,7 +7,7 @@ class Computer {
   String? gpu;
 
   void displayConfiguration() {
-    printWithColor('', 'Configuração do Meu PC:', 'blue');
+    print(blue('Configuração do Meu PC:'));
     print('CPU: $cpu');
     print('RAM: $ram');
     print('Armazenamento: $storage');

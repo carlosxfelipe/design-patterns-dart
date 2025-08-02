@@ -1,4 +1,4 @@
-import '../../utils/print_with_color.dart';
+import '../../utils/ansi_colors.dart';
 
 abstract class Hamburger {
   void prepare();
@@ -11,28 +11,28 @@ abstract class Drink {
 class ChickenHamburger implements Hamburger {
   @override
   void prepare() {
-    printWithColor('Preparando hambúrguer de ', 'frango', 'yellow');
+    print('Preparando hambúrguer de ${yellow('frango')}');
   }
 }
 
 class BeefHamburger implements Hamburger {
   @override
   void prepare() {
-    printWithColor('Preparando hambúrguer de carne ', 'bovina', 'brown');
+    print('Preparando hambúrguer de carne ${rgb24('bovina', 0x8B4513)}');
   }
 }
 
 class Water implements Drink {
   @override
   void pour() {
-    printWithColor('Servindo ', 'água', 'blue');
+    print('Servindo ${blue('água')}');
   }
 }
 
 class Soda implements Drink {
   @override
   void pour() {
-    printWithColor('Servindo ', 'refrigerante', 'orange');
+    print('Servindo ${rgb24('refrigerante', 0xFFA500)}');
   }
 }
 
@@ -57,16 +57,18 @@ class HealthyRestaurantFactory implements RestaurantFactory {
   Drink createDrink() => Water();
 }
 
-void runRestaurant(RestaurantFactory factory, String name, String color) {
-  printWithColor('\n', name, color);
-  print('-' * 40);
-  final hamburger = factory.createHamburger();
-  final drink = factory.createDrink();
-  hamburger.prepare();
-  drink.pour();
-}
-
 void main() {
-  runRestaurant(FastFoodRestaurantFactory(), 'Fast Food Restaurant', 'red');
-  runRestaurant(HealthyRestaurantFactory(), 'Healthy Restaurant', 'green');
+  print(red('Fast Food Restaurant'));
+  {
+    final factory = FastFoodRestaurantFactory();
+    factory.createHamburger().prepare();
+    factory.createDrink().pour();
+  }
+
+  print(green('\nHealthy Restaurant'));
+  {
+    final factory = HealthyRestaurantFactory();
+    factory.createHamburger().prepare();
+    factory.createDrink().pour();
+  }
 }

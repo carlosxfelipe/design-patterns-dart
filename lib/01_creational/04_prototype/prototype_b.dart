@@ -1,3 +1,5 @@
+import 'package:design_patterns_dart/utils/ansi_colors.dart';
+
 class Pokemon {
   String name;
   String type;
@@ -11,23 +13,44 @@ class Pokemon {
     return Pokemon(name, type, level, List.from(attacks));
   }
 
+  String Function(String) getColorForType() {
+    switch (type.toLowerCase()) {
+      case 'fogo':
+        return red;
+      case 'elétrico':
+        return yellow;
+      case 'água':
+        return blue;
+      case 'grama':
+        return green;
+      case 'psíquico':
+        return magenta;
+      case 'gelo':
+        return cyan;
+      default:
+        return (text) => text;
+    }
+  }
+
   void displayInfo() {
-    print('Nome: $name');
-    print('Tipo: $type');
+    final color = getColorForType();
+
+    print(bold(color('Nome: $name')));
+    print(color('Tipo: $type'));
     print('Nível: $level');
-    print('Ataques: ${attacks.join(", ")}');
+    print('Ataques: ${attacks.join(", ")}\n');
   }
 }
 
 void main() {
-  final pikachu = Pokemon("Pikachu", "Elétrico", 5, [
-    "Choque do Trovão",
-    "Ataque Rápido",
+  final pikachu = Pokemon('Pikachu', 'Elétrico', 5, [
+    'Choque do Trovão',
+    'Ataque Rápido',
   ]);
 
-  final charmander = Pokemon("Charmander", "Fogo", 5, [
-    "Lança-chamas",
-    "Garra de Fogo",
+  final charmander = Pokemon('Charmander', 'Fogo', 5, [
+    'Lança-chamas',
+    'Garra de Fogo',
   ]);
 
   final clonedPikachu = pikachu.clone();

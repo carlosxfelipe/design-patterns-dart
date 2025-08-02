@@ -1,5 +1,5 @@
 import 'dart:io';
-import '../../utils/print_with_color.dart';
+import '../../utils/ansi_colors.dart';
 
 abstract class Hamburger {
   void prepare();
@@ -8,21 +8,21 @@ abstract class Hamburger {
 class ChickenHamburger implements Hamburger {
   @override
   void prepare() {
-    printWithColor('Preparando hambúrguer de ', 'frango', 'yellow');
+    print('Preparando hambúrguer de ${yellow('frango')}');
   }
 }
 
 class BeefHamburger implements Hamburger {
   @override
   void prepare() {
-    printWithColor('Preparando hambúrguer de carne ', 'bovina', 'brown');
+    print('Preparando hambúrguer de carne ${rgb8('bovina', 94)}');
   }
 }
 
 class VeggieHamburger implements Hamburger {
   @override
   void prepare() {
-    printWithColor('Preparando hambúrguer ', 'vegetariano', 'green');
+    print('Preparando hambúrguer ${green('vegetariano')}');
   }
 }
 
@@ -81,6 +81,6 @@ void main() {
     final factory = getHamburgerFactoryByChoice(burgerChoice);
     factory.orderHamburger();
   } catch (e) {
-    printWithColor('', e.toString(), 'red');
+    print(red(e.toString()));
   }
 }

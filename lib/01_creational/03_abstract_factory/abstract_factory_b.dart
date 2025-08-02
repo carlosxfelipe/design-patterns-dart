@@ -1,4 +1,4 @@
-import '../../utils/print_with_color.dart';
+import '../../utils/ansi_colors.dart';
 
 abstract class Vehicle {
   void assemble();
@@ -8,31 +8,38 @@ abstract class Engine {
   void start();
 }
 
+/// Função utilitária para aplicar `cyan` em verbos terminados com "ando", "endo", "indo"
+String highlightGerund(String text) {
+  final gerundPattern =
+      RegExp(r'\b(\w+?(ando|endo|indo))\b', caseSensitive: false);
+  return text.replaceAllMapped(gerundPattern, (match) => cyan(match[0]!));
+}
+
 class ElectricCar implements Vehicle {
   @override
   void assemble() {
-    print('Fabricando um carro elétrico.');
+    print(highlightGerund("Fabricando um carro elétrico."));
   }
 }
 
 class GasCar implements Vehicle {
   @override
   void assemble() {
-    print('Fabricando um carro a combustão.');
+    print(highlightGerund("Fabricando um carro a combustão."));
   }
 }
 
 class ElectricEngine implements Engine {
   @override
   void start() {
-    print('Ligando o motor elétrico.');
+    print(highlightGerund("Ligando o motor elétrico."));
   }
 }
 
 class GasEngine implements Engine {
   @override
   void start() {
-    print('Ligando o motor a combustão.');
+    print(highlightGerund("Ligando o motor a combustão."));
   }
 }
 
@@ -57,18 +64,22 @@ class GasVehicleFactory implements VehicleFactory {
   Engine createEngine() => GasEngine();
 }
 
-void runFactory(
-    VehicleFactory factory, String leading, String colored, String color) {
-  printWithColor(leading, colored, color);
-  print('-' * 40);
-  final vehicle = factory.createVehicle();
-  final engine = factory.createEngine();
-  vehicle.assemble();
-  engine.start();
-}
-
 void main() {
-  runFactory(
-      ElectricVehicleFactory(), 'Criando veículo ', 'elétrico:', 'yellow');
-  runFactory(GasVehicleFactory(), '\nCriando veículo a ', 'combustão:', 'red');
+  print('Criando veículo ${yellow('elétrico')}:');
+  {
+    final factory = ElectricVehicleFactory();
+    final vehicle = factory.createVehicle();
+    final engine = factory.createEngine();
+    vehicle.assemble();
+    engine.start();
+  }
+
+  print('\nCriando veículo a ${red('combustão')}:');
+  {
+    final factory = GasVehicleFactory();
+    final vehicle = factory.createVehicle();
+    final engine = factory.createEngine();
+    vehicle.assemble();
+    engine.start();
+  }
 }

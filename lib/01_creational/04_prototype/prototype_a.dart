@@ -1,4 +1,4 @@
-import 'package:design_patterns_dart/utils/print_with_color.dart';
+import 'package:design_patterns_dart/utils/ansi_colors.dart';
 
 class Document {
   String title;
@@ -25,12 +25,12 @@ void main() {
     'Julio Bitencourt',
   );
 
-  printWithColor('', 'doc1:', 'blue');
+  print(blue('doc1:'));
   doc1.displayInfo();
 
   final doc2 = doc1.clone();
   doc2.title = 'O guia avançado de Dart';
 
-  printWithColor('\n', 'doc2:', 'green');
+  print(green('\ndoc2:'));
   doc2.displayInfo();
 }
